@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+
+{% block content %}
+<head><style>
+body {
+  background-color: #E8DCD9;
+  font-family: serif;
+}</style></head>
+
+<center><h1 style="color:red">{{current_user.firstname}}, add the things you would like to insure:</h1>
+
+<h2>List of your current assets: 
+    {% for asset in assets %}
+    <ul>&#128205;{{ asset.asset_type }} - {{ asset.description }}</ul>
+    {% endfor %}
+</h2>
+
+<h1 class="blue">Add a new asset to your account:</h1>
+<form method="post">
+    {{ form.hidden_tag() }}
+    <p>
+        {{ form.asset_type.label }}<br>
+        {{ form.asset_type() }}<br>
+        {% for error in form.asset_type.errors %}
+        <span style="color: red;">[{{ error }}]</span>
+        {% endfor %}
+    </p>
+    <p>
+        {{ form.description.label }}<br>
+        {{ form.description(size=32) }}<br>
+        {% for error in form.description.errors %}
+        <span style="color: red;">[{{ error }}]</span>
+        {% endfor %}
+    </p>
+    <p>
+        {{ form.location.label }}<br>
+        {{ form.location(size=32) }}<br>
+        {% for error in form.location.errors %}
+        <span style="color: red;">[{{ error }}]</span>
+        {% endfor %}
+    </p>
+    <p>{{ form.submit() }}</p>
+</form></center>
+
+{% endblock %}

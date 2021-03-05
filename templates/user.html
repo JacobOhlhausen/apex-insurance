@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block content %}
+<head><style>
+body {
+  background-color: #E8DCD9;
+  font-family: serif;
+}</style></head>
+
+<center><h1 style="color:red">Welcome back {{current_user.firstname}}!</h1>
+
+<h2>List of your current policies: 
+    {% for policy in policies %}
+    <ul>&#128205;{{ policy.policy_type }} - {{ policy.asset_id }}</ul>
+    {% endfor %}
+    <ul><a href="/user/{{current_user.id}}/policies">&#128205;Add Policy</a></ul>
+</h2>
+
+<h2>List of your current assets: 
+    {% for asset in assets %}
+    <ul>&#128205;{{ asset.description }}</ul>
+    {% endfor %}
+    <ul><a href="/user/{{current_user.id}}/assets">&#128205;Add Asset</a></ul>
+</h2>
+
+{% endblock %}
